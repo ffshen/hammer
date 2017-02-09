@@ -28,6 +28,7 @@ public class DruidConfiguration {
     
     @Autowired
     private DruidProperties properties ;
+    
 
     @Bean
     public ServletRegistrationBean druidServlet() {
