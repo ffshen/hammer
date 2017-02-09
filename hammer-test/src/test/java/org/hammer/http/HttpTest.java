@@ -1,6 +1,5 @@
 package org.hammer.http;
-  
-import org.aspectj.lang.annotation.Around;
+   
 import org.hammer.TestStarter;
 import org.hammer.context.AppContext;
 import org.hammer.mvc.controller.DefaultWebApiResult;
@@ -10,8 +9,7 @@ import org.hammer.utils.JsonUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.LoggerFactory; 
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.context.annotation.ComponentScan;

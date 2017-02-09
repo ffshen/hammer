@@ -46,6 +46,7 @@ public class RestClient {
             headers.add(new BasicHeader("Accept-Language", "zh-CN"));
             headers.add(new BasicHeader("Connection", "Keep-Alive"));
             headers.add(new BasicHeader("Content-Type", MediaType.APPLICATION_JSON));
+            
             */
             
             httpClientBuilder.setDefaultHeaders(headers);   
