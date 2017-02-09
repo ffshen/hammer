@@ -1,0 +1,74 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.hammer</groupId>
+    <artifactId>hammer</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>hammer-app-hessianclient</artifactId>
+  
+<dependencies>
+		<dependency>
+			<groupId>org.hammer</groupId>
+			<artifactId>hammer-common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hammer</groupId>
+			<artifactId>hammer-module</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>	
+		<dependency>
+			<groupId>org.hammer</groupId>
+			<artifactId>hammer-hessian-client</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+						
+							
+	</dependencies>	  
+  
+  <build>
+        <sourceDirectory>../src/main/</sourceDirectory>
+     	<resources>
+		  <resource>
+			<directory>../src/main/resources/hessian</directory>
+			<targetPath>/hessian</targetPath>
+		  </resource>
+	    </resources>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <includes>
+                        <include>**/client/**</include>
+                        <include>**/domain/**</include>
+                        <include>**/service/*ClientAPI.java</include>
+                    </includes>
+                    <excludes>
+                    <exclude>**/*.md</exclude>
+                    </excludes>
+                    <!-- 需要和调用端的版本一致 -->
+                    <!-- 
+                    <source>1.7</source>
+                    <target>1.7</target>
+                     -->
+                </configuration>
+            </plugin>
+            <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.2.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+						<phase>package</phase>
+					</execution>
+				</executions>
+			</plugin>
+        </plugins>
+    </build>
+</project>

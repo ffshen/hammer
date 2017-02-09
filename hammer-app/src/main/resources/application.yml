@@ -1,0 +1,12 @@
+spring:
+    profiles.active: dev	
+---
+spring:
+    profiles: dev
+server:
+    port: 10010
+---
+spring:
+    profiles: prod
+server:
+    port: 10020			

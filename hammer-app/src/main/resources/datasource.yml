@@ -1,0 +1,30 @@
+spring:
+    profiles.active: dev	
+---
+spring:
+    profiles: dev
+    dbconfig:
+        url: "jdbc:mysql://172.16.1.153:3306/gz_odc_dev?characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull"
+        username: java
+        password: java
+        read-url: "jdbc:mysql://172.16.1.153:3306/gz_odc_dev_sdk?characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull"
+        read-username: java
+        read-password: java
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        maxActive: 20
+        initialSize: 1
+        max-wait: 60000
+        minIdle: 1
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 'x'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        pool-prepared-statements: true
+        max-open-prepared-statements: 100
+        max-pool-prepared-statement-per-connection-size: 50
+        remove-abandoned: true
+        remove-abandoned-timeout: 3600
+        filters: stat,wall,slf4j

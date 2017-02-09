@@ -1,0 +1,36 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.hammer</groupId>
+  <artifactId>hammer</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+    <parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.3.5.RELEASE</version>
+		<relativePath />
+	</parent>
+
+  	<properties> 
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>     	
+   		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+ 	</properties>
+ 	
+ 	
+	  <modules>
+	  	<module>hammer-module</module>
+	  	<module>hammer-common</module>
+	  	<module>hammer-mybatis</module>
+	  	<module>hammer-redis</module>
+	  	<module>hammer-mvc</module>
+	  	<module>hammer-context</module>
+	  	<module>hammer-hessian-server</module>
+	  	<module>hammer-hessian-client</module>
+	  	<module>hammer-app</module>
+	  	<module>hammer-test</module>
+	  </modules>
+</project>

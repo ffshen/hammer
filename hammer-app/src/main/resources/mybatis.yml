@@ -1,0 +1,5 @@
+mybatis:
+    config-location: "classpath:mybatis-config.xml"
+    mapper-location: "classpath*:mapper/**/*.xml"
+    type-aliases-package: "org.hammer.domain"
+    base-package: "org.hammer.mapper"

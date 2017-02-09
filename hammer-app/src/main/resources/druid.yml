@@ -1,0 +1,8 @@
+datasource:
+    druid: 
+        filters: stat,wall,slf4j
+        login-username: qlkdev3
+        login-password: qlkdev3@2016
+        session-stat-enable: true
+        session-stat-max-count: 2000
+        profile-enable: true
