@@ -8,7 +8,9 @@ import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.http.client.support.HttpRequestWrapper;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ClientHttpRequestInterceptorImpl implements ClientHttpRequestInterceptor {
 
 	@Override
