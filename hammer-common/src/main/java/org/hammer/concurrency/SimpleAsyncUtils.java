@@ -1,6 +1,7 @@
 package org.hammer.concurrency;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
 import java.util.concurrent.ForkJoinPool;
 import java.util.function.Supplier;
 
@@ -27,5 +28,9 @@ public class SimpleAsyncUtils {
     
     public static <U> CompletableFuture<U> supplyAsyncWithPool(Supplier<U> supplier) {
         return CompletableFuture.supplyAsync(new SupplierWithContext<U>(supplier),ExecutorServiceFactory.getExecutorService());
+    }
+    
+    public static <U> CompletableFuture<U> supplyAsync(Supplier<U> supplier, Executor exe ) {
+        return CompletableFuture.supplyAsync(new SupplierWithContext<U>(supplier),exe);
     }
 }

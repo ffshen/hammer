@@ -37,7 +37,7 @@ public class HttpTest {
     public void testHttp() {    	
     	SampleVo s = new SampleVo() ;
     	s.setOrderId(orderId);     	 
-    	RestClient.getRestTemplate().setInterceptors(Lists.newArrayList(new ClientHttpRequestInterceptorImpl()));
+//    	RestClient.getRestTemplate().setInterceptors(Lists.newArrayList(new ClientHttpRequestInterceptorImpl()));
 //    	DefaultWebApiResult resp = RestClient.getRestTemplate().postForObject("http://localhost:10010/sample/test", s, DefaultWebApiResult.class) ;
     	DefaultWebApiResult resp = SimpleHttpClient.post("http://localhost:10010/sample/test", s) ;
     	logger.info("testHttp : " + JsonUtil.toJson(resp) );
