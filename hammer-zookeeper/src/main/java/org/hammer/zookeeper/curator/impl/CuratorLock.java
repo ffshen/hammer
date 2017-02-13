@@ -89,7 +89,6 @@ public class CuratorLock	{
 		try{			
 			lock = new InterProcessMutex(singleCaseClient, path);	
 			acquirelock(lock) ; 
-			Thread.sleep(6000);
 			suppliper.get() ;
 		}
 		catch(RetException ret){

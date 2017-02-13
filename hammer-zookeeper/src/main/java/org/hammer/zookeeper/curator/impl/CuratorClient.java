@@ -7,6 +7,7 @@ import org.apache.curator.framework.recipes.atomic.AtomicValue;
 import org.apache.curator.framework.recipes.atomic.DistributedAtomicLong; 
 import org.apache.log4j.Logger;
 import org.hammer.zookeeper.curator.ICuratorClient;
+import org.hammer.zookeeper.curator.impl.CuratorLock.CuratorLockSupplier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,9 @@ public class CuratorClient implements ICuratorClient{
 	@Autowired
 	@Qualifier("getRetryPolicy")
 	protected RetryPolicy retrypolicy ;
+	
+	@Autowired
+	private CuratorLock lockService ; 
 
  
 	private  DistributedAtomicLong getAtomicLong(String path) throws Exception {
@@ -44,6 +48,16 @@ public class CuratorClient implements ICuratorClient{
 			throw ex ;
 		}
 		return retValue;
+	}
+
+	@Override
+	public void lock(String path, CuratorLockSupplier suppliper) throws Exception {
+		lockService.lock(path, suppliper);		
+	}
+
+	@Override
+	public void lock(String path, Integer lockSec, CuratorLockSupplier suppliper) throws Exception {
+		lockService.lock(path, lockSec, suppliper);		
 	}
 
 

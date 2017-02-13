@@ -1,5 +1,5 @@
 #### 说明
-1. 基于Spring Boot(web,aop,data,jdbc)整合Durid,Mybatis,Redis,Hessian,RestTemplate等
+1. 基于Spring Boot(web,aop,data,jdbc)整合Durid,Mybatis,Redis,Hessian,RestTemplate,ZooKeeper CuratorFramework等
 2. 通过AbstractRoutingDataSource，Annotation实现读写分离
 3. 通过JedisCluster作为redis集群的客户端，也可使用RedisTemplate作为redis客户端。实现Redis锁。
 4. 通过HessianProxy,HessianProxyFactory,HessianServiceExporter实现hessian接口。
@@ -93,3 +93,59 @@
 1. 用pom.xml编译hessian服务端，client/pom.xml编译hessian客户端
 2. HessianServerConfig 用于启动Hessian服务
 3. AppHessianClient 用于生成Hessian客户端
+
+####ZooKeeper CuratorFramework
+1. 使用CuratorFramework实现Lock,UniqueCode
+2. 结合CuratorFramework和Lambda Function 实现分布式锁。
+		
+		example:
+			...
+			public void lock(String path, Integer lockSec ,CuratorLockSupplier suppliper) throws Exception {
+				InterProcessMutex lock = null ;
+				try{			
+					lock = new InterProcessMutex(singleCaseClient, path);	
+					acquirelock(lock) ; 
+					suppliper.get() ;
+				}
+				catch(RetException ret){
+					logger.error(ret.getResMsg(),ret);
+					throw ret ;			
+				}
+				catch(Exception ex){
+					logger.error("- CuratorLock Lock Error . ",ex);
+					throw new Exception(ex) ;
+				}
+				finally{
+					releaselock(lock) ;
+				}
+			}
+			
+		    @FunctionalInterface
+		    public interface CuratorLockSupplier {
+		
+		        Object get() throws RetException, Exception;
+		    }			
+			...
+		    @Test
+		    public void lock() throws Exception {
+		    	lock.lock(LockCodePath,  locksupplier );
+		    	lock.lock(LockCodePath,  locksupplier1 );
+		    }
+		
+		    private CuratorLockSupplier locksupplier  = ()->{
+		    	logger.info("--- Lock 1 Logic ---");
+		    	return null ;
+		    } ;
+		    
+		    private CuratorLockSupplier locksupplier1  = ()->{
+		    	logger.info("--- Lock 2 Logic ---");
+		    	return null ;
+		    } ;
+
+3. UniqueCode
+		
+		example：
+		...
+    	logger.info("- CuratorClientTest getUniqueCode : {} " , curatorClient.getUniqueCode(UniqueCodePath) );
+			
+			
