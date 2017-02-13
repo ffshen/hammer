@@ -3,8 +3,6 @@ package org.hammer.mvc.http;
 import org.hammer.http.RestClient;
 import org.hammer.mvc.controller.DefaultWebApiResult;
 import org.hammer.mvc.interceptor.ClientHttpRequestInterceptorImpl;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.stereotype.Service;
 

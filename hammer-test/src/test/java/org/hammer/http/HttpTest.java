@@ -4,7 +4,6 @@ import org.hammer.TestStarter;
 import org.hammer.context.AppContext;
 import org.hammer.mvc.controller.DefaultWebApiResult;
 import org.hammer.mvc.http.SimpleHttpClient;
-import org.hammer.mvc.interceptor.ClientHttpRequestInterceptorImpl;
 import org.hammer.utils.JsonUtil; 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,8 +13,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import com.google.common.collect.Lists;
+ 
 
 @RunWith(SpringJUnit4ClassRunner.class) // SpringJUnit支持，由此引入Spring-Test框架支持！
 @SpringApplicationConfiguration(classes = TestStarter.class) // 指定我们SpringBoot工程的Application启动类

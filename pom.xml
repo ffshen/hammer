@@ -33,5 +33,6 @@
 	  	<module>hammer-hessian-client</module>
 	  	<module>hammer-app</module>
 	  	<module>hammer-test</module>
+	  	<module>hammer-zookeeper</module>
 	  </modules>
 </project>
