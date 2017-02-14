@@ -148,4 +148,31 @@
 		...
     	logger.info("- CuratorClientTest getUniqueCode : {} " , curatorClient.getUniqueCode(UniqueCodePath) );
 			
-			
+
+####Kafka
+1. Kafka分为生产者 kafka-producer 和 kafaka-consumer两部分。
+2. producer部分，利用org.apache.commons.pool2.BasePooledObjectFactory池化对象kafka.javaapi.producer.Producer。再利用org.apache.commons.pool2.impl.GenericObjectPool创建Producer对象池。
+		
+		example:
+		    @Test
+			    public void kafkaProducer() throws Exception { 
+					for (long nEvents = 0; nEvents < 10; nEvents++) { 	
+						Producer<String, String> producer = null  ;
+						try{
+							producer =  simiPool.borrowObject() ;	
+							...
+						        KeyedMessage<String, String> data 
+						        	= new KeyedMessage<String, String>(topic, key ,msg );         
+						        producer.send(data);   
+						}
+						finally{
+							Boolean isProducerNull = Objects.isNull(producer) ;
+							if(BooleanUtils.isFalse(isProducerNull) ){
+								simiPool.returnObject(producer);
+							}
+						}
+					}
+					simiPool.close();
+			    }			
+
+3. consumer部分，参见例子ConsumerApp。接合线程池，Lambda Function，Kafka High Level Consumer 编写通用的kafka消费者模板AbstractKafkaConsumer。同时，支持Kafka安全集群。

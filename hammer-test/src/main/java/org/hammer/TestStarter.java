@@ -6,10 +6,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
-import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
-import org.springframework.boot.context.properties.ConfigurationProperties; 
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;  
+import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer; 
+import org.springframework.context.annotation.ComponentScan; 
  
  
  
@@ -21,16 +19,12 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  * @version
  */
 @SpringBootApplication 
-@EnableAspectJAutoProxy
-@ConfigurationProperties(locations = "classpath:application.yml",prefix = "server")
 @ComponentScan(basePackages={TestStarter.baseBackages})
 public class TestStarter implements EmbeddedServletContainerCustomizer,CommandLineRunner{
     
     public static final String baseBackages = "org.hammer" ;
 
     private static Logger logger = LoggerFactory.getLogger(TestStarter.class);
-     
-    private String port ;    
 
     public static void main( String[] args ) {
         try{
@@ -47,7 +41,6 @@ public class TestStarter implements EmbeddedServletContainerCustomizer,CommandLi
      */
     @Override
     public void run(String... args) throws Exception {
-        logger.info("- init : app starting");
         
     }
 
@@ -56,15 +49,8 @@ public class TestStarter implements EmbeddedServletContainerCustomizer,CommandLi
      */
     @Override
     public void customize(ConfigurableEmbeddedServletContainer container) {
-        logger.info("- init : server port : {}",getPort());
-        container.setPort(Integer.parseInt(getPort()));        
+        container.setPort(10088);        
     }
-    
-    public String getPort() {
-        return port;
-    }
-
-    public void setPort(String port) {
-        this.port = port;
-    }
+     
+ 
 }

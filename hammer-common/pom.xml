@@ -6,19 +6,19 @@
     <parent>
 		<groupId>org.hammer</groupId>
 		<artifactId>hammer</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+    	<version>${project.version}</version> 
 	</parent>
   
 	<dependencies>
 		<dependency>
 			<groupId>org.hammer</groupId>
 			<artifactId>hammer-context</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+    		<version>${project.version}</version> 
 		</dependency>	
 		<dependency>
 			<groupId>org.hammer</groupId>
 			<artifactId>hammer-module</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+    		<version>${project.version}</version> 
 		</dependency>
 		<!-- Http -->
 		<dependency>
@@ -33,6 +33,11 @@
 
 			
   		<!-- Common -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-pool2</artifactId>
+		</dependency>	
+		  		
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>

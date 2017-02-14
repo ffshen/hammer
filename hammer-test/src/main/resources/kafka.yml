@@ -1,0 +1,13 @@
+kafka:
+    producer: 
+        broker-list: "127.0.0.1:9093"
+        serializer-class: kafka.serializer.StringEncoder
+        partitioner-class: org.hammer.kafka.config.SamplePartitioner
+        request-required-acks: 1
+    consumer:
+        zookeeper-connect: "127.0.0.1:2182,127.0.0.1:2181,127.0.0.1:2183"
+        group-id: example-group1
+        zookeeper-session-timeout-ms: 15000
+        zookeeper-sync-time-ms: 2000
+        auto-commit-interval-ms: 10000
+        security-mode: false

@@ -3,27 +3,35 @@
   <parent>
     <groupId>org.hammer</groupId>
     <artifactId>hammer</artifactId>
-    <version>${project.version}</version>     
+    <version>${project.version}</version> 
   </parent>
-  <artifactId>hammer-zookeeper</artifactId>
+  <artifactId>hammer-kafka-producer</artifactId>
   
-	<dependencies>
+    <dependencies>
 		<dependency>
 			<groupId>org.hammer</groupId>
 			<artifactId>hammer-common</artifactId>
-   			<version>${project.version}</version> 
+		 	<version>${project.version}</version> 
+		</dependency>    
+  		<dependency>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka_2.10</artifactId>
+			<version>0.8.2.1</version>
+			<exclusions>
+			    <exclusion>
+			      <artifactId>jmxri</artifactId>
+			      <groupId>com.sun.jmx</groupId>
+			    </exclusion>
+			    <exclusion>
+			      <artifactId>jms</artifactId>
+			      <groupId>javax.jms</groupId>
+			    </exclusion>
+			    <exclusion>
+			      <artifactId>jmxtools</artifactId>
+			      <groupId>com.sun.jdmk</groupId>
+			    </exclusion>
+			  </exclusions>
 		</dependency>
-		<!-- ZooKeeper -->
-		<dependency>
-			<groupId>org.apache.curator</groupId>
-			<artifactId>curator-framework</artifactId>
-			<version>2.8.0</version>
-		</dependency>
-		<dependency>  
-		    <groupId>org.apache.curator</groupId>  
-		    <artifactId>curator-recipes</artifactId>  
-		    <version>2.8.0</version>  
-		</dependency>  	
 		<!-- Spring Boot -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -36,6 +44,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>					
-	</dependencies>
+		</dependency>	
+				
+	</dependencies>		
 </project>

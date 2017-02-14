@@ -34,5 +34,7 @@
 	  	<module>hammer-app</module>
 	  	<module>hammer-test</module>
 	  	<module>hammer-zookeeper</module>
+	  	<module>hammer-kafka-producer</module>
+	  	<module>hammer-kafka-consumer</module>
 	  </modules>
 </project>

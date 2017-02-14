@@ -3,6 +3,8 @@ spring:
 ---
 spring:
     profiles: dev
+    #如果不使用JMS，那么设为false,否则报.MXBean already registered with name org.apache.commons.pool2
+    jmx.enabled: false 
 server:
     port: 10110
 ---

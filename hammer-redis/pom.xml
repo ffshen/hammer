@@ -3,7 +3,7 @@
   <parent>
     <groupId>org.hammer</groupId>
     <artifactId>hammer</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${project.version}</version> 
   </parent>
   <artifactId>hammer-redis</artifactId>
   
@@ -13,12 +13,12 @@
 		<dependency>
 			<groupId>org.hammer</groupId>
 			<artifactId>hammer-module</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+    		<version>${project.version}</version> 
 		</dependency>	
 		<dependency>
 			<groupId>org.hammer</groupId>
 			<artifactId>hammer-common</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+    		<version>${project.version}</version> 
 		</dependency>		
 		<!-- Reids 若需要Reids共享Session打开@EnableRedisHttpSession那么spring-data-redis需要1.7.4.RELEASE版本 -->
 		<dependency>

@@ -1,0 +1,71 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.hammer</groupId>
+    <artifactId>hammer</artifactId>
+    <version>${project.version}</version> 
+  </parent>
+  <artifactId>hammer-kafka-consumer</artifactId>
+  
+    <dependencies>
+		<dependency>
+			<groupId>org.hammer</groupId>
+			<artifactId>hammer-common</artifactId>
+		 	<version>${project.version}</version> 
+		</dependency> 
+		<!-- Spring Boot --> 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>ch.qos.logback</artifactId>
+					<groupId>logback-core</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>logback-parent</artifactId>
+					<groupId>logback-classic</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-boot-starter-logging</artifactId>
+					<groupId>org.springframework.boot</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>log4j-over-slf4j</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>				
+			</exclusions>			
+		</dependency>		
+ 	
+		<!-- Kafka -->
+		<dependency>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka_2.10</artifactId>
+			<version>0.8.2.1</version>
+			<exclusions>
+			    <exclusion>
+			      <artifactId>jmxri</artifactId>
+			      <groupId>com.sun.jmx</groupId>
+			    </exclusion>
+			    <exclusion>
+			      <artifactId>jms</artifactId>
+			      <groupId>javax.jms</groupId>
+			    </exclusion>
+			    <exclusion>
+			      <artifactId>jmxtools</artifactId>
+			      <groupId>com.sun.jdmk</groupId>
+			    </exclusion>
+			    <exclusion>
+			      <artifactId>org.apache.zookeeper</artifactId>
+			      <groupId>zookeeper</groupId>
+			    </exclusion>	
+			  </exclusions>
+		</dependency>
+		<!-- ZooKeeper -->
+		<dependency>
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+			<version>3.5.0</version>
+		</dependency>		
+    </dependencies> 
+</project>

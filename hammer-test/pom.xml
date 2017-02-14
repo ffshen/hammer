@@ -9,6 +9,16 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.hammer</groupId>
+			<artifactId>hammer-kafka-producer</artifactId>
+		 	<version>${project.version}</version> 
+		</dependency> 	
+		<dependency>
+			<groupId>org.hammer</groupId>
+			<artifactId>hammer-kafka-consumer</artifactId>
+		 	<version>${project.version}</version> 
+		</dependency> 		
+		<dependency>
+			<groupId>org.hammer</groupId>
 			<artifactId>hammer-app</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
