@@ -84,6 +84,32 @@
 		}
 2. SimpleHttpClient,发送Http请求,注入拦截器ClientHttpRequestInterceptorImpl。ClientHttpRequestInterceptorImpl将Context放入Http Head。
 3. HandlerInterceptorImpl 服务端。将请求的Head 信息，放入Context。
+4. 支持异步请求。通过DeferredResult，Lambda Function ，ExecutorService实现。
+
+		example：
+		protected DeferredResult<DefaultWebApiResult> asyncOf(Supplier supplier){
+	    	DeferredResult<DefaultWebApiResult> deferredResult = new DeferredResult<DefaultWebApiResult>();
+	    	CompletableFuture<DefaultWebApiResult> future
+	    		= SimpleAsyncUtils
+	    			.supplyAsyncWithPool(()->{
+	    				return  of( supplier) ;
+	    			}) ; 
+	    	try {
+				deferredResult.setResult(future.get()) ;
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				e.printStackTrace();
+			}
+	    	return deferredResult ;
+    	}
+    	...
+    	@RequestMapping(value = "/testAsync", method = RequestMethod.POST)
+	    @ResponseBody
+	    public DeferredResult<DefaultWebApiResult> sampleTestAsync(@Validated @RequestBody SampleVo reqVo) {
+	        log.info("SampleController sampleTestAsync : ",AppContext.getTraceId());
+	        return asyncOf(()->i.selectByPk(reqVo.getOrderId())) ;
+	    }
 
 #### Hessian
 1. CustomHessianServiceExporter 继承 HessianServiceExporter。Hessian服务端。将Hessian请求头信息放入Context。
