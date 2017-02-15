@@ -2,11 +2,14 @@ package org.hammer.mvc.controller;
 
 
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.stream.Stream;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
- 
+
+import org.hammer.concurrency.SimpleAsyncUtils;
 import org.hammer.exception.RetException;
 import org.hammer.mvc.context.LoginContextHolder;
 import org.hammer.utils.JsonUtil;
@@ -16,6 +19,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.context.request.async.DeferredResult;
  
  
 
@@ -109,6 +113,23 @@ public class BaseController {
             logger.error("NothingConsumer service execute throw RetException error - ", e);
             return DefaultWebApiResult.failure(DefaultWebApiResult.BUSINESS_BUSY_FAIL_CODE, DefaultWebApiResult.BUSINESS_BUSY_FAIL_MSG);
         }
+    }
+    
+    protected DeferredResult<DefaultWebApiResult> asyncOf(Supplier supplier){
+    	DeferredResult<DefaultWebApiResult> deferredResult = new DeferredResult<DefaultWebApiResult>();
+    	CompletableFuture<DefaultWebApiResult> future
+    		= SimpleAsyncUtils
+    			.supplyAsyncWithPool(()->{
+    				return  of( supplier) ;
+    			}) ; 
+    	try {
+			deferredResult.setResult(future.get()) ;
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
+    	return deferredResult ;
     }
 
     @FunctionalInterface

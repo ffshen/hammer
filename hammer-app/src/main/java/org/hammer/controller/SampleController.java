@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.async.DeferredResult;
  
  
 
@@ -38,5 +39,12 @@ public class SampleController extends BaseController{
     public DefaultWebApiResult sampleTest(@Validated @RequestBody SampleVo reqVo) {
         log.info("SampleController sampleTest : ",AppContext.getTraceId());
         return of(()->i.selectByPk(reqVo.getOrderId())) ;
+    }
+    
+    @RequestMapping(value = "/testAsync", method = RequestMethod.POST)
+    @ResponseBody
+    public DeferredResult<DefaultWebApiResult> sampleTestAsync(@Validated @RequestBody SampleVo reqVo) {
+        log.info("SampleController sampleTestAsync : ",AppContext.getTraceId());
+        return asyncOf(()->i.selectByPk(reqVo.getOrderId())) ;
     }
 }

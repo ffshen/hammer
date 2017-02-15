@@ -3,7 +3,7 @@
   <parent>
     <groupId>org.hammer</groupId>
     <artifactId>hammer</artifactId>
-    <version>${project.version}</version> 
+    <version>0.0.1-SNAPSHOT</version> 
   </parent>
   <artifactId>hammer-kafka-producer</artifactId>
   
