@@ -75,7 +75,7 @@
 			}
 
 #### Mvc
-BaseController,利用 Supplier lambda 减少代码量
+1. BaseController,利用 Supplier lambda 减少代码量
 		
 		example:
 		public DefaultWebApiResult sampleTest(@Validated @RequestBody SampleVo reqVo) {
@@ -83,7 +83,7 @@ BaseController,利用 Supplier lambda 减少代码量
 			return of(()->i.selectByPk(reqVo.getOrderId())) ;
 		}
 		
-SimpleHttpClient,发送HTTP请求的客户端。支持同步和异步两种方式 。通过RestTemplate，AsyncRestTemplate，Proxy，FutureCallbackProxy 实现。
+2. SimpleHttpClient,发送HTTP请求的客户端。支持同步和异步两种方式 。通过RestTemplate，AsyncRestTemplate，Proxy，FutureCallbackProxy 实现。
 
 		sync example:
 		   DefaultWebApiResult resp = (DefaultWebApiResult) SimpleHttpClient
@@ -110,8 +110,8 @@ SimpleHttpClient,发送HTTP请求的客户端。支持同步和异步两种方�
 	        })
     		.postAsync()   	;
 		
-HandlerInterceptorImpl 服务端。将请求的Head 信息，放入Context。
-支持异步请求。通过DeferredResult，Lambda Function ，ExecutorService实现。
+3. HandlerInterceptorImpl 服务端。将请求的Head 信息，放入Context。
+4. 支持异步请求。通过DeferredResult，Lambda Function ，ExecutorService实现。
 
 		example：
 		protected DeferredResult<DefaultWebApiResult> asyncOf(Supplier supplier){
