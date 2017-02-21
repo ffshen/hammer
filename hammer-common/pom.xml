@@ -30,7 +30,10 @@
 		    <groupId>org.apache.httpcomponents</groupId>
 		    <artifactId>httpclient</artifactId>
 		</dependency>
-
+		  <dependency>
+		   <groupId>org.apache.httpcomponents</groupId>
+		   <artifactId>httpasyncclient</artifactId>
+		  </dependency>
 			
   		<!-- Common -->
 		<dependency>
@@ -59,6 +62,8 @@
 			<artifactId>guava</artifactId>
 			<version>19.0</version>
 		</dependency>
+
+		
 		<!-- Json -->
 		<dependency>
 		 	<groupId>com.fasterxml.jackson.core</groupId>

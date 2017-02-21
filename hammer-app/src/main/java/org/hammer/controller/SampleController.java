@@ -37,7 +37,7 @@ public class SampleController extends BaseController{
     @RequestMapping(value = "/test", method = RequestMethod.POST)
     @ResponseBody
     public DefaultWebApiResult sampleTest(@Validated @RequestBody SampleVo reqVo) {
-        log.info("SampleController sampleTest : ",AppContext.getTraceId());
+        log.info("SampleController sampleTest : {} ",AppContext.getTraceId());
         return of(()->i.selectByPk(reqVo.getOrderId())) ;
     }
     

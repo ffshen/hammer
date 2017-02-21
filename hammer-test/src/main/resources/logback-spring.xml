@@ -5,14 +5,15 @@
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
     <jmxConfigurator/>
 
-    <property name="log_home" value="/app/logs"/>
+    <property name="log_home" value="/app/logs/app/logs"/>
     <property name="log_name" value="test"/>
+    <property name="log_path" value="app"/>
   
      
     <appender name="B2C_FILE" class= "ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>/apps/logs/${log_name}/logs/${log_name}.log</file>
+        <file>/apps/logs/${log_path}/logs/${log_name}.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>/apps/logs/${log_name}/logs/${log_name}-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>/apps/logs/${log_path}/logs/${log_name}-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>500MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>

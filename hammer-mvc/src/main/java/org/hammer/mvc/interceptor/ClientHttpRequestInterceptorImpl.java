@@ -16,7 +16,7 @@ public class ClientHttpRequestInterceptorImpl implements ClientHttpRequestInterc
 	@Override
 	public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution )
 			throws IOException {
-	    HttpRequestWrapper requestWrapper = new HttpRequestWrapper(request);  
+	    HttpRequestWrapper requestWrapper = new HttpRequestWrapper(request);  	    
 	    requestWrapper.getHeaders().set(AppContext.TRACE_ID, AppContext.getTraceId());
 	    return execution.execute(requestWrapper, body); 
 	}
