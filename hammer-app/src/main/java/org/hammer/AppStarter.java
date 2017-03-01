@@ -5,10 +5,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory; 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
-import org.springframework.boot.context.properties.ConfigurationProperties; 
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import; 
@@ -27,6 +28,7 @@ import org.springframework.context.annotation.Import;
 @ConfigurationProperties(locations = "classpath:application.yml",prefix = "server")
 @ComponentScan(basePackages={AppStarter.baseBackages})
 @Import(HessianServerConfig.class)
+@EnableAutoConfiguration
 public class AppStarter implements EmbeddedServletContainerCustomizer,CommandLineRunner{
     
     public static final String baseBackages = "org.hammer" ;

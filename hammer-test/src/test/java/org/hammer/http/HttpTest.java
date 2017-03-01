@@ -50,18 +50,18 @@ public class HttpTest {
     }
     
     @Test
-    public void testAsyncHttp() {    	
+    public void testAsyncHttp() throws InterruptedException {    	
     	
     	SampleVo s = new SampleVo() ;
     	s.setOrderId(orderId);     	 
     	
     	SimpleHttpClient
-    		.prepareDefaultWebApiResult()
-    		.withUrl("http://localhost:10010/sample/testAsync")
+    		.prepare(SampleVo.class)
+    		.withUrl("http://localhost:9000/test/2/testpath")
     		.withBody(s)
-    		.withCallback(new FutureCallback<ResponseEntity<DefaultWebApiResult>>(){
+    		.withCallback(new FutureCallback<ResponseEntity<SampleVo>>(){
 				@Override
-				public void onSuccess(ResponseEntity<DefaultWebApiResult> result) {
+				public void onSuccess(ResponseEntity<SampleVo> result) {
 			    	logger.info("testAsyncHttp : " + JsonUtil.toJson(result.getBody()) );				
 				}
 				@Override	
@@ -72,6 +72,11 @@ public class HttpTest {
     		.postAsync()  
     	
     	;
+
+    	logger.info("testAsyncHttp sleep " );	
+    	
+    	Thread.sleep(10000);
+    	logger.info("testAsyncHttp sleep end " );
     }
      
     

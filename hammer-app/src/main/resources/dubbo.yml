@@ -1,0 +1,8 @@
+dubbo:
+    common: 
+        registry-address: "127.0.0.1:2181"
+        registry-protocol: zookeeper
+        application-name: app
+        monitor-protocol: registry
+        protocol-port: 20881
+        provider-threads: 10

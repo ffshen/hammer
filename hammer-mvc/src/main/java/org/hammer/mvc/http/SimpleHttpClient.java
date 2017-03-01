@@ -4,8 +4,9 @@ package org.hammer.mvc.http;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.HashMap;
 import java.util.List;
-
+ 
 import org.hammer.concurrency.pool.ExecutorServiceFactory;
 import org.hammer.context.AppContext;
 import org.hammer.http.AsyncRestClient;
@@ -43,6 +44,8 @@ public class SimpleHttpClient {
 		
 		private Object body ;
 		
+		private HashMap<String, Object> urlVariables ;
+		
 		private MultiValueMap<String, String> headers ;
 		
 		private List<ClientHttpRequestInterceptor> interceptors ;
@@ -78,13 +81,23 @@ public class SimpleHttpClient {
 			return this ;
 		}
 		
+		public HttpBuilder<T> withUrlVariables(HashMap<String, Object> v){
+			this.urlVariables = v ;
+			return this ;
+		}
+		
+		public HttpBuilder<T> withUrlVariable(String key ,Object value){
+			this.urlVariables.put(key, value) ;
+			return this ;
+		}
+		
 		public HttpBuilder<T>   withInterceptor(ClientHttpRequestInterceptor i){
 			this.interceptors.add(i) ;
 			return this ;
 		}
 
-        @SuppressWarnings("unchecked")
-		public HttpBuilder<T> withCallback(FutureCallback<ResponseEntity<T>> c){	
+        @SuppressWarnings({ "unchecked", "rawtypes" })
+		public HttpBuilder  withCallback(FutureCallback  c){	
 	        InvocationHandler handler = new FutureCallbackProxy(c);	        
 			FutureCallback<ResponseEntity<T>> proxyinstance =
 	        		(FutureCallback<ResponseEntity<T>>)Proxy
@@ -96,6 +109,12 @@ public class SimpleHttpClient {
 			return this ;
 		}
 
+		@SuppressWarnings({"unchecked"})
+		public ResponseEntity<T> get(){   
+			ResponseEntity<T> output  = (ResponseEntity<T>) restTemplate.getForEntity(url, responseType, urlVariables)		;
+			return  output ;
+		}        
+
 		@SuppressWarnings({"unchecked", "rawtypes"})
 		public ResponseEntity<T> post(){   
 			HttpEntity entity = new HttpEntity(body ,headers);
@@ -103,15 +122,14 @@ public class SimpleHttpClient {
 			ResponseEntity<T> output  = (ResponseEntity<T>) restTemplate.postForEntity(url, entity, responseType ) ;			
 			return  output ;
 		}
-		
+
 		@SuppressWarnings({"unchecked", "rawtypes"})
 		public void postAsync(){ 
-
 			headers.add(AppContext.TRACE_ID, AppContext.getTraceId());
-			HttpEntity entity = new HttpEntity(body ,headers);	 	 
+			HttpEntity entity = new HttpEntity(body ,headers);	 
 			
-			org.springframework.util.concurrent.ListenableFuture<T> 
-					response = (org.springframework.util.concurrent.ListenableFuture<T>) asynRestTemplate.postForEntity(url , entity, responseType);
+			org.springframework.util.concurrent.ListenableFuture  
+					response = (org.springframework.util.concurrent.ListenableFuture ) asynRestTemplate.postForEntity(url , entity, responseType);
 			
 			ListenableFuture  future = JdkFutureAdapters.listenInPoolThread(response,  ExecutorServiceFactory.getExecutorService()) ;
 			
@@ -140,6 +158,10 @@ public class SimpleHttpClient {
 			    .withResponseType(DefaultWebApiResult.class) ;
 	}
 	 
-    
+	public static HttpBuilder<?>  prepare(Class<?> responseType){
+		return new HttpBuilder<>()
+				.withInterceptor(clientHttpRequestInterceptor) 
+			    .withResponseType(responseType) ;
+	}
 	
 }

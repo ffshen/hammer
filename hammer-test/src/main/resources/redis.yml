@@ -1,0 +1,19 @@
+spring:
+    profiles.active: dev	
+---
+spring:
+    profiles: dev
+    redis:
+        cluster:
+            hosts: 172.16.1.35:6379,172.16.1.36:6379,172.16.1.37:6379,172.16.1.35:6380,172.16.1.36:6380,172.16.1.37:6380
+        sentinel:
+            use-sentinel: true
+            master: mymaster
+            nodes: 172.16.1.153:26378,172.16.1.152:26378
+            password: pyredis
+            pool-max-active: 8
+            pool-max-idle: 8
+            pool-max-wait: -1
+            pool-min-idle: 0
+            port: 26378
+            database: 5                   

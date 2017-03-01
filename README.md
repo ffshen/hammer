@@ -229,3 +229,11 @@
 			    }			
 
 3. consumer部分，参见例子ConsumerApp。接合线程池，Lambda Function，Kafka High Level Consumer 编写通用的kafka消费者模板AbstractKafkaConsumer。同时，支持Kafka安全集群。
+4. spring.jmx.enabled: false。否则报.MXBean already registered with name org.apache.commons.pool2
+
+####Dubbo
+1. 集成Dubbo。集成后，对外不但发布hessian,http rest还可以发布dubbo服务。当然，也可通过dubbo暴露rest或者hessian接口。
+2. 与hessian类似，服务端需要编译客户端client包，然后从spring context中将bean取出。
+3. 本例以zookeeper作为注册中心，结合spring boot annotation免xml配置。
+4. 通过dubbo filter 使 appcontext的traceId 通过 dubbo的RpcContext 传输。保证一次服务，traceId一致。
+5. 可外接dubbo admin进行管理和二次开发。

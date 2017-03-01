@@ -1,0 +1,82 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.hammer</groupId>
+    <artifactId>hammer</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>hammer-dubbo-common</artifactId>
+  
+  <dependencies>
+		<dependency>
+			<groupId>org.hammer</groupId>
+			<artifactId>hammer-common</artifactId>
+		 	<version>${project.version}</version> 
+		</dependency> 
+		<dependency>
+			<groupId>org.hammer</groupId>
+			<artifactId>hammer-context</artifactId>
+    		<version>${project.version}</version> 
+		</dependency>			  
+		<!-- Spring Boot --> 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>ch.qos.logback</artifactId>
+					<groupId>logback-core</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>logback-parent</artifactId>
+					<groupId>logback-classic</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-boot-starter-logging</artifactId>
+					<groupId>org.springframework.boot</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>log4j-over-slf4j</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>			
+			</exclusions>			
+		</dependency>	  
+		
+		<dependency>
+		    <groupId>com.alibaba</groupId>
+		    <artifactId>dubbo</artifactId>
+		    <version>2.5.3</version>
+		    <exclusions>
+		        <exclusion>
+		            <groupId>log4j</groupId>
+		            <artifactId>log4j</artifactId>
+		        </exclusion>
+		        <exclusion>
+		            <groupId>commons-logging</groupId>
+		            <artifactId>commons-logging</artifactId>
+		        </exclusion>
+		        <exclusion>
+		            <groupId>org.springframework</groupId>
+		            <artifactId>spring</artifactId>
+		        </exclusion>
+		        <exclusion>
+		            <groupId>com.alibaba</groupId>
+		            <artifactId>fastjson</artifactId>
+		        </exclusion> 		        
+		    </exclusions>
+		</dependency>
+	  	<!-- https://mvnrepository.com/artifact/redis.clients/jedis  
+		<dependency>
+		    <groupId>redis.clients</groupId>
+		    <artifactId>jedis</artifactId>
+		    <version>2.1.0</version>
+		</dependency>
+  		-->
+	 <dependency>
+	    <groupId>com.github.sgroschupf</groupId>
+	    <artifactId>zkclient</artifactId>
+	    <version>0.1</version>
+	 </dependency>
+	
+   </dependencies> 
+</project>
