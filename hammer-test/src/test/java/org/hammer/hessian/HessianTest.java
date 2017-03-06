@@ -38,6 +38,9 @@ public class HessianTest {
     public void testHessian(){
         logger.info("HessianTest testHessian traceid : {}", AppContext.getTraceId() );        
         SampleDomain domain = AppHessianClient.getHessianApi().selectByPk(orderId) ;
-        logger.info("HessianTest testHessian : {}",JsonUtil.toJson(domain));
+        logger.info("HessianTest testHessian 1: {}",JsonUtil.toJson(domain));      
+        domain = AppHessianClient.getHessianApi().selectByPk(orderId) ;
+        logger.info("HessianTest testHessian 2: {}",JsonUtil.toJson(domain));
+        
     }
 }

@@ -39,5 +39,6 @@
 	  	<module>hammer-kafka-producer</module>
 	  	<module>hammer-kafka-consumer</module>
 	  	<module>hammer-dubbo-common</module>
+	  	<module>hammer-servicebus</module>
 	  </modules>
 </project>

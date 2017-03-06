@@ -6,6 +6,10 @@
 5. 业务切域之后，通过AppContext，保证同一次服务请求在跨域调用时拥有相同的context。例如，traceId。并通过PatternLayout输出至日志文件。
 6. 提供并行框架，通过SimpleAsyncUtils，Function等，将父线程的context拷贝至子线程。
 
+#### service bus
+1. 前置服务，用于Proxy
+2. 目前使用vertx。Nio,Netty,Actor。例子是hessian转发的例子。
+
 #### Module
 1. 因为hessian接口需要为外系统提供客户端，所以需要将本应用和客户端公用的对象抽取出来，避免客户端太过冗余
 2. 包含公共的Exception，Enum，Vo，Constants等
