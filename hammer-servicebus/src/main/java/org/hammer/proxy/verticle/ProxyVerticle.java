@@ -43,14 +43,14 @@ public class ProxyVerticle extends AbstractVerticle {
 	        }	           	  	 
 	    	
 	    	String proxyDomain = request.getParam("proxyDomain");
-	    	String proxyPath = request.getParam("proxyPath");
-	    	
+	    	String proxyPath = request.getParam("proxyPath");	    	
 
-        	HttpClientOptions options = new HttpClientOptions().setKeepAlive(false);
+        	HttpClientOptions options = new HttpClientOptions().setKeepAlive(true);
         	HttpClient client = vertx.createHttpClient(options);
 	    	HttpClientRequest proxyRequest 
 	        	= client.request(request.method(), getPort(proxyDomain) ,getHost(proxyDomain),getUri(proxyPath) , proxyResponse -> {
 	        	  response
+				  	.setChunked(true)
 	    		  	.headers()
 	    		  	.setAll(proxyResponse.headers()) ;
 	        	  
@@ -58,7 +58,6 @@ public class ProxyVerticle extends AbstractVerticle {
 	    			  try{
 	    				  response
 		        		  	.setStatusCode(proxyResponse.statusCode())
-	    				  	.setChunked(true)
 	    				  	.write(proxyRespBuffer) ;
 	    			  }
 	    			  catch(Exception e){
@@ -68,11 +67,11 @@ public class ProxyVerticle extends AbstractVerticle {
 	    		  });
 	    		  proxyResponse.endHandler((v) -> response.end());
 	    	}) ;	 
-	        proxyRequest.exceptionHandler(ex->{
+	        proxyRequest
+	        	.exceptionHandler(ex->{
 				  	logger.error("proxyRequest error .",ex);	            	
-	        });	        
-	    	proxyRequest
-    			.setChunked(true)
+	        	})
+	        	.setChunked(true)
     			.headers().setAll(headers)
 			  	; 
 		    	
@@ -81,7 +80,7 @@ public class ProxyVerticle extends AbstractVerticle {
 			        if (logger.isInfoEnabled()) {
 			            logger.info(" request -> body :{}" ,	bodybuffer);   	
 			        }
-		        	proxyRequest.write(bodybuffer)		        		;
+		        	proxyRequest.write(bodybuffer);
 		    }) ;
 		    request.endHandler((v) -> proxyRequest.end());
 	    	 

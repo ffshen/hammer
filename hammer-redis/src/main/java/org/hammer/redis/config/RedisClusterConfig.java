@@ -75,5 +75,5 @@ public class RedisClusterConfig extends CachingConfigurerSupport {
             throw new RuntimeException("Please check if 'spring.redis.hosts' was configured properly!", e);
         } 
 
-    }
+    } 
 }

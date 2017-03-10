@@ -1,4 +1,4 @@
-package org.hammer.mvc.controller;
+package org.hammer.mvc;
 
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;

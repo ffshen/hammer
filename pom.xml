@@ -40,5 +40,6 @@
 	  	<module>hammer-kafka-consumer</module>
 	  	<module>hammer-dubbo-common</module>
 	  	<module>hammer-servicebus</module>
+	  	<module>hammer-wfl</module>
 	  </modules>
 </project>

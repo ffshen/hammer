@@ -80,16 +80,16 @@ public class CuratorLock	{
 		}
 	}	
 
-	public void lock(String path,  CuratorLockSupplier suppliper) throws Exception {
-		lock(path, LOCK_SECONDS, suppliper ) ;
+	public <T> T lock(String path,  CuratorLockSupplier<T> suppliper) throws Exception {
+		return lock(path, LOCK_SECONDS, suppliper ) ;
 	}
 	
-	public void lock(String path, Integer lockSec ,CuratorLockSupplier suppliper) throws Exception {
+	public <T> T lock(String path, Integer lockSec ,CuratorLockSupplier<T> suppliper) throws Exception {
 		InterProcessMutex lock = null ;
 		try{			
 			lock = new InterProcessMutex(singleCaseClient, path);	
 			acquirelock(lock) ; 
-			suppliper.get() ;
+			return suppliper.get() ;
 		}
 		catch(RetException ret){
 			logger.error(ret.getResMsg(),ret);
@@ -105,9 +105,9 @@ public class CuratorLock	{
 	}
 	
     @FunctionalInterface
-    public interface CuratorLockSupplier {
+    public interface CuratorLockSupplier<T> {
 
-        Object get() throws RetException, Exception;
+        T get() throws RetException, Exception;
     }
 
 }

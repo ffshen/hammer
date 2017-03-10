@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.hammer.concurrency.SimpleAsyncUtils;
 import org.hammer.exception.RetException;
+import org.hammer.mvc.DefaultWebApiResult;
 import org.hammer.mvc.context.LoginContextHolder;
 import org.hammer.utils.JsonUtil;
 import org.hammer.vo.OperatorVo;

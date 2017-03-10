@@ -1,8 +1,8 @@
 package org.hammer.http;
  
 import org.hammer.TestStarter;
-import org.hammer.context.AppContext; 
-import org.hammer.mvc.controller.DefaultWebApiResult;
+import org.hammer.context.AppContext;
+import org.hammer.mvc.DefaultWebApiResult;
 import org.hammer.mvc.http.SimpleHttpClient; 
 import org.hammer.utils.JsonUtil; 
 import org.junit.Test;

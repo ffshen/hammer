@@ -1,0 +1,22 @@
+wfl-order:
+ -
+  wfl-id: 1
+  wfl-name: "自动取消订单"
+  wfl-code: "AUTO_CANCEL_ORDER"
+  wfl-controls: 
+  - { control-id: 1,step-id: 2001, next-step-id: 2002 }
+  - { control-id: 2,step-id: 2002, next-step-id: 2003 }
+  - { control-id: 3,step-id: 2002, next-step-id: 2004 }
+  - { control-id: 4,step-id: 2002, next-step-id: 2005 }
+  - { control-id: 5,step-id: 2003, next-step-id: 2006 }
+  - { control-id: 6,step-id: 2004, next-step-id: 2006 }
+  - { control-id: 7,step-id: 2005, next-step-id: 2006 }
+  - { control-id: 8,step-id: 2006, next-step-id: 2007 }
+  wfl-steps:
+  - { step-id: 2001,step-code: START,                step-type: S, is-auto: true,step-name: 自动取消订单-开始 } 
+  - { step-id: 2002,step-code: FORK,                 step-type: F, is-auto: true,step-name: 并发测试流程-分支 } 
+  - { step-id: 2003,step-code: RELEASE_COUPON,       step-type: N, is-auto: true,step-name: 自动取消订单-回滚优惠券 } 
+  - { step-id: 2004,step-code: RELEASE_FIVEDISCOUNT, step-type: N, is-auto: true,step-name: 自动取消订单-回滚首单五折 } 
+  - { step-id: 2005,step-code: RELEASE_STOCK,        step-type: N, is-auto: true,step-name: 自动取消订单-回滚库存 } 
+  - { step-id: 2001,step-code: JOIN,                 step-type: J, is-auto: true,step-name: 并发测试流程-合并 } 
+  - { step-id: 2001,step-code: END,                  step-type: E, is-auto: true,step-name: 自动取消订单-结束 }  

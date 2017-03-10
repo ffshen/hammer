@@ -1,8 +1,8 @@
 package org.hammer.controller;
  
 import org.hammer.context.AppContext;
+import org.hammer.mvc.DefaultWebApiResult;
 import org.hammer.mvc.controller.BaseController;
-import org.hammer.mvc.controller.DefaultWebApiResult;
 import org.hammer.service.SampleInterface;
 import org.hammer.vo.SampleVo;
 import org.slf4j.Logger;
