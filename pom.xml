@@ -22,7 +22,34 @@
     	<project.version>0.0.1-SNAPSHOT</project.version> 
     	<zookeeper.version>3.5.0</zookeeper.version> 
  	</properties>
- 	
+
+	<distributionManagement>
+	  <repository>
+	      <id>nexus-releases</id>
+	      <url>http://192.168.101.130:8090/nexus/content/repositories/releases/</url>
+	  </repository>
+	  <snapshotRepository>
+	      <id>nexus-snapshots</id>
+	      <url>http://192.168.101.130:8090/nexus/content/repositories/snapshots/</url>
+	  </snapshotRepository>
+	</distributionManagement>
+  
+	  <!-- 仓库地址 -->
+	  <repositories>
+	      <repository>
+	          <id>nexus</id>
+	          <name>Team Nexus Repository</name>
+	          <url>http://192.168.101.130:8090/nexus/content/groups/public</url>
+	      </repository>
+	  </repositories>
+	  <!-- 插件地址 -->
+	  <pluginRepositories>
+	      <pluginRepository>
+	          <id>nexus</id>
+	          <name>Team Nexus Repository</name>
+	          <url>http://192.168.101.130:8090/nexus/content/groups/public</url>
+	      </pluginRepository>
+	  </pluginRepositories>     	
  	
 	  <modules>
 	  	<module>hammer-module</module>
