@@ -26,11 +26,11 @@
 	<distributionManagement>
 	  <repository>
 	      <id>nexus-releases</id>
-	      <url>http://192.168.101.130:8090/nexus/content/repositories/releases/</url>
+	      <url>http://192.168.101.140:10000/nexus/content/repositories/releases/</url>
 	  </repository>
 	  <snapshotRepository>
 	      <id>nexus-snapshots</id>
-	      <url>http://192.168.101.130:8090/nexus/content/repositories/snapshots/</url>
+	      <url>http://192.168.101.140:10000/nexus/content/repositories/snapshots/</url>
 	  </snapshotRepository>
 	</distributionManagement>
   
@@ -39,7 +39,7 @@
 	      <repository>
 	          <id>nexus</id>
 	          <name>Team Nexus Repository</name>
-	          <url>http://192.168.101.130:8090/nexus/content/groups/public</url>
+	          <url>http://192.168.101.140:10000/nexus/content/groups/public</url>
 	      </repository>
 	  </repositories>
 	  <!-- 插件地址 -->
@@ -47,7 +47,7 @@
 	      <pluginRepository>
 	          <id>nexus</id>
 	          <name>Team Nexus Repository</name>
-	          <url>http://192.168.101.130:8090/nexus/content/groups/public</url>
+	          <url>http://192.168.101.140:10000/nexus/content/groups/public</url>
 	      </pluginRepository>
 	  </pluginRepositories>     	
  	
