@@ -13,6 +13,7 @@ import org.hammer.kafka.consumer.AbstractKafkaConsumer;
 import org.hammer.kafka.properties.KafkaConsumerProperties;
 import org.hammer.kafka.runable.SampleRunable;
 import org.hammer.kafka.security.SecurityUtils;
+import org.hammer.utils.JsonUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.DisposableBean;
@@ -20,11 +21,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication; 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
+import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.context.annotation.Import; 
 
 @SpringBootApplication
 @Import(KafkaConsumerProperties.class)
-public class ConsumerApp extends AbstractKafkaConsumer implements DisposableBean,CommandLineRunner{
+public class ConsumerApp extends AbstractKafkaConsumer implements EmbeddedServletContainerCustomizer,DisposableBean,CommandLineRunner{
 
     private static Logger logger = LoggerFactory.getLogger(ConsumerApp.class);
     
@@ -82,10 +85,13 @@ public class ConsumerApp extends AbstractKafkaConsumer implements DisposableBean
         props.put("zookeeper.session.timeout.ms", properties.getZookeeperSessionTimeoutMs());
         props.put("zookeeper.sync.time.ms", properties.getZookeeperSyncTimeMs());
         props.put("auto.commit.interval.ms", properties.getAutoCommitIntervalMs()); 
+        props.put("auto.offset.reset", "smallest"); 
+		logger.info("ConsumerConfig : {}",JsonUtil.toJson(props));
         return new ConsumerConfig(props);
 	}
 	@Override
 	protected ExecutorService getExecutor() {
+		logger.info("ExecutorService");
 		return ExecutorServiceFactory.getExecutorService();
 	}
 	
@@ -93,5 +99,8 @@ public class ConsumerApp extends AbstractKafkaConsumer implements DisposableBean
 	public void destroy() throws Exception {
 		doDestory() ;		
 	}
-
+    @Override
+    public void customize(ConfigurableEmbeddedServletContainer container) {
+        container.setPort(10089);        
+    }
 }

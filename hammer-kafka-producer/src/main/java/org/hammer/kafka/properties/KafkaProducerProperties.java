@@ -18,6 +18,18 @@ public class KafkaProducerProperties {
     private String partitionerClass ;
     
     private String requestRequiredAcks ;
+    
+    private String zkConnect ;
+    
+    
+
+	public String getZkConnect() {
+		return zkConnect;
+	}
+
+	public void setZkConnect(String zkConnect) {
+		this.zkConnect = zkConnect;
+	}
 
 	public String getBrokerList() {
 		return brokerList;

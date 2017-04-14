@@ -51,7 +51,7 @@ public class TestStarter implements EmbeddedServletContainerCustomizer,CommandLi
      */
     @Override
     public void customize(ConfigurableEmbeddedServletContainer container) {
-        container.setPort(10088);        
+        container.setPort(10080);        
     }
      
  

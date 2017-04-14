@@ -1,11 +1,12 @@
 kafka:
     producer: 
-        broker-list: "127.0.0.1:9093"
+        broker-list: "192.168.101.141:9092,192.168.101.142:9092,192.168.101.143:9092"
         serializer-class: kafka.serializer.StringEncoder
         partitioner-class: org.hammer.kafka.config.SamplePartitioner
         request-required-acks: 1
+        zk-connect: "192.168.101.141:2181,192.168.101.142:2181,192.168.101.143:2181"
     consumer:
-        zookeeper-connect: "127.0.0.1:2182,127.0.0.1:2181,127.0.0.1:2183"
+        zookeeper-connect: "192.168.101.141:2181,192.168.101.142:2181,192.168.101.143:2181"
         group-id: example-group1
         zookeeper-session-timeout-ms: 15000
         zookeeper-sync-time-ms: 2000

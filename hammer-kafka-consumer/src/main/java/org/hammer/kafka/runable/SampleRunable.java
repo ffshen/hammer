@@ -24,8 +24,10 @@ public class SampleRunable implements Runnable{
 	 public void run() {
 	 	ConsumerIterator<byte[], byte[]> it = stream.iterator();
         while (it.hasNext()){ 
+        	System.out.println(".....");
         	MessageAndMetadata<byte[], byte[]> msg = it.next();
-        	logger.info(" partition : {} , key : {} ,message : {} ",msg.partition(),new String(msg.key()),new String(msg.message()) );        }
+        	logger.info(" partition : {} , key : {} ,message : {} ",msg.partition(),new String(msg.key()),new String(msg.message()) );       
+       	}
 	}
 
 }

@@ -35,11 +35,11 @@ public abstract class AbstractKafkaConsumer {
 		HashMap<String, Integer> topicCountMap = new HashMap<String, Integer>();		
 		
 		//4个进程去消费消息
-		topicCountMap.put(getTopic(), getPartition() );
+		topicCountMap.put("example-metric1", 4 );
 		
 		Map<String, List<KafkaStream<byte[], byte[]>>> consumerMap = consumerConnector.createMessageStreams(topicCountMap);
 		
-		List<KafkaStream<byte[], byte[]>> streams = consumerMap.get(getTopic());
+		List<KafkaStream<byte[], byte[]>> streams = consumerMap.get("example-metric1");
 		
 		consumer.accept(streams);
 	}

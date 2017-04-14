@@ -35,23 +35,24 @@ public class ProducerTest {
     @Test
     public void kafkaProducer() throws Exception { 
     	Random rnd = new Random();
+    	Producer<String, String> producer =  simiPool.borrowObject() ;
 		for (long nEvents = 0; nEvents < 10; nEvents++) { 	
-			Producer<String, String> producer = null  ;
+//			Producer<String, String> producer = null  ;
 			try{
-				producer =  simiPool.borrowObject() ;			
-	            long runtime = new Date().getTime();              
+//				producer =  simiPool.borrowObject() ;			
+	            long runtime = System.currentTimeMillis();              
 	            String msg = "192.168.3." + rnd.nextInt(10);             
-	            String key = runtime + msg;             
+	            String key = msg + runtime ;             
 	            KeyedMessage<String, String> data = new KeyedMessage<String, String>("example-metric1", key ,msg );            
 	            logger.info(" KafkaTest kafkaProducer Test SendMsg : {} ",msg);            
 	            producer.send(data);     
-	            Thread.sleep(500);
+	            Thread.sleep(1000);
 			}
 			finally{
-				Boolean isProducerNull = Objects.isNull(producer) ;
-				if(BooleanUtils.isFalse(isProducerNull) ){
-					simiPool.returnObject(producer);
-				}
+//				Boolean isProducerNull = Objects.isNull(producer) ;
+//				if(BooleanUtils.isFalse(isProducerNull) ){
+//					simiPool.returnObject(producer);
+//				}
 			}
 		}
 		simiPool.close();

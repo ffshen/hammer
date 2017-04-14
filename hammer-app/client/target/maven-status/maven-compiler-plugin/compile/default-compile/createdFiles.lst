@@ -1,0 +1,3 @@
+org\hammer\client\AppHessianClient.class
+org\hammer\domain\SampleDomain.class
+org\hammer\service\AppHessianClientAPI.class
